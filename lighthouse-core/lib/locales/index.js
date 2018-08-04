@@ -9,34 +9,27 @@
 
 /** @type {Record<LH.Locale, LocaleMessages>} */
 const locales = {
-  // These two are aliased explicitly
-  'en': require('./en-IE.json'), // en-* fallback, use non-american English
-  'en-GB': require('./en-IE.json'), // identical to en-IE
+  'en-US': require('./en-US.json'), // The 'source' strings, with descriptions
 
-  // All locales from here have a messages file, though we sometimes map to another as the files are identical
+  // TODO: We shouldn't ship all of en-IE, only the ~10 messages that are different from en-US
+  'en': require('./en-IE.json'), // en-* fallback, use non-american English. Applied to en-GB. en-IE, en-SG, en-ZA, en-IN
+
+  'gsw': require('./de.json'), // swiss german. identical (for our purposes) to 'de'
+
+  // All locales from here have a messages file, though we allow fallback to the base locale when the files are identical
   'ar-XB': require('./ar-XB.json'), // psuedolocalization
   'ar': require('./ar.json'),
   'bg': require('./bg.json'),
   'ca': require('./ca.json'),
   'cs': require('./cs.json'),
   'da': require('./da.json'),
-  'de-AT': require('./de.json'), // no difference in messages as 'de'
-  'de-CH': require('./de.json'), // no difference in messages as 'de'
-  'de': require('./de.json'),
+  'de': require('./de.json'), // de-AT, de-CH identical, so they fall back into de
   'el': require('./el.json'),
-  // TODO: We shouldn't ship all of en-IE, only the ~10 messages that are different from en-US
-  'en-IE': require('./en-IE.json'),
-  'en-IN': require('./en-IE.json'), // identical to en-IE
-  'en-SG': require('./en-IE.json'), // identical to en-IE
-  'en-US': require('./en-US.json'),
   'en-XA': require('./en-XA.json'), // psuedolocalization
-  'en-ZA': require('./en-IE.json'), // identical to en-IE
   'es': require('./es.json'),
   'fi': require('./fi.json'),
   'fil': require('./fil.json'),
-  'fr-CH': require('./fr.json'), // identical to fr
-  'fr': require('./fr.json'),
-  'gsw': require('./de.json'), // no difference in messages as 'de'
+  'fr': require('./fr.json'), // fr-CH identical, so it falls back into fr
   'hi': require('./hi.json'),
   'hr': require('./hr.json'),
   'hu': require('./hu.json'),
@@ -50,9 +43,8 @@ const locales = {
   'nl': require('./nl.json'),
   'no': require('./no.json'),
   'pl': require('./pl.json'),
-  'pt-BR': require('./pt.json'), // pt-BR and pt are identical
   'pt-PT': require('./pt-PT.json'),
-  'pt': require('./pt.json'),
+  'pt': require('./pt.json'), // pt-BR identical, so it falls back into pt
   'ro': require('./ro.json'),
   'ru': require('./ru.json'),
   'sk': require('./sk.json'),
